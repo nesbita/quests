@@ -14,20 +14,34 @@ const Bookshelf = () => {
     const [books, setBooks] = useState(inventory);
 
     const sortedBookshelf = (books) => {
-        return books;
+        // this was the other part to edit
+        const sortedBooks = [...books]
+        if(!ascending) {
+            return sortedBooks.sort((a,b) => (a[sort.keyToSort].toUpperCase() < b[sort.keyToSort].toUpperCase()) ? 1 : -1)        
+        }
+        return sortedBooks.sort((a,b) => (a[sort.keyToSort].toUpperCase() < b[sort.keyToSort].toUpperCase()) ? -1 : 1)
+
+        // return books;
     }
 
     const handleDeletedBook = (deletedBookId) => {
-        return null;
+        // filter all the books that are not that book 
+        const updatedBooks = books.filter((book) => book.id !== deletedBookId)
+        setBooks(updatedBooks)
+        // return null;
     }
 
     const handleEditedBook = (editedBook) => {
-        return null;
+        // filtering through for the edited book (if it has the same id as the edited book)
+        let remainingBooks = books.filter(book => book.id !== editedBook.id);
+        setBooks([...remainingBooks, editedBook])
+        // return null;
     }
 
     const handleAddedBook = (newBook) => {
-        return null;
-     }
+        // return null;
+        setBooks([...books, newBook]);
+    }
 
     const handleSort = (header) => {
         isAscending(!ascending);

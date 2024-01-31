@@ -17,7 +17,15 @@ const AddBook = ({onSubmit}) => {
     const [newBook, setNewBook] = useState(initialValues);
 
     const handleChange = (e) => {
-        return null;
+        // return null;
+        // need to get key value pair
+        const {name, value} = e.target;
+        // we want the previously added value plus the new one coming in
+        setNewBook((prev) => ({
+            ...prev,
+            id: Math.floor(Math.random() * 100000),
+            [name]: value,
+        }))
     }
 
     const handleSubmit = (e) => {

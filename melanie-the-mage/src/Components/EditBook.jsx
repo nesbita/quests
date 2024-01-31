@@ -17,7 +17,15 @@ const EditBook = ({ book, closeModal, onSubmit }) =>  {
     );
 
     const handleChange = (e) => {
-       return null;
+    //    return null;
+    // need name and value
+    const {name, value} = e.target;
+    setEditedBook((prev) => ({
+        ...prev,
+        [name]: value,
+    }))
+    console.log(editedBook)
+    
     };
 
     const handleSubmit = (e) => {
